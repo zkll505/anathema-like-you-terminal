@@ -186,13 +186,22 @@ const ERRORS = [
     "unhandled exception: fear(death) returned undefined",
 ];
 
-// [vignette alpha, blur, spread, pulse period]
+// [vignette alpha, blur, spread]
 const HEAT = [
-    [0.2, "14vmin", "1vmin", "5s"],
-    [0.33, "16vmin", "2vmin", "3s"],
-    [0.47, "18vmin", "3vmin", "1.6s"],
-    [0.8, "22vmin", "5vmin", ".7s"],
+    [0.2, "14vmin", "1vmin"],
+    [0.33, "16vmin", "2vmin"],
+    [0.47, "18vmin", "3vmin"],
+    [0.8, "22vmin", "5vmin"],
 ];
+// The vignette pulses on every hit (up to full strength 1) and on errors (PULSE_ERR of that), fading out over PULSE_MS.
+const PULSE_ERR = 0.35,
+    PULSE_MS = 250;
+let kick = 0,
+    kickAt = 0;
+function pulse(a) {
+    kick = Math.max(kick * Math.exp(-(performance.now() - kickAt) / PULSE_MS), a);
+    kickAt = performance.now();
+}
 // Beat shakes at any heat. Found from the wav's 80 bpm pulse (beat 0.75s from 73.14s): the 30% of beats with the
 // hardest low-end hit; strength = that spike vs the median hit. A ! marks a big hit, which cracks the screen:
 // strength 1.2+, or the first hit after a 4s+ gap.
@@ -219,7 +228,7 @@ HITS.forEach(
 const HIT_DELAY = 0.05;
 // shake strength per heat level: hits (x their strength) vs errors
 const HIT_SHAKE = 1.6,
-    ERR_SHAKE = 0.6;
+    ERR_SHAKE = 0.25;
 
 // Cracks in the background, on the big hits (the ones marked ! in HIT_DATA). Each big hit cracks two out at once from the
 // screen border, from opposite sides: the second starts at the mirror point of the first (top right <-> bottom left, right <->
@@ -462,8 +471,7 @@ function error() {
     recent.push(err);
     if (recent.length > 6) recent.shift();
     printErr(err);
-    vig.classList.add("hit");
-    setTimeout(() => vig.classList.remove("hit"), 70);
+    pulse(PULSE_ERR);
     shake(heat * ERR_SHAKE);
 }
 
@@ -713,12 +721,13 @@ function paint(t) {
     const [alpha, blur, spread] = HEAT[heat];
     const shadow = `inset 0 0 ${blur} ${spread} hsl(${hue} 100% 55% / ${alpha})`;
     if (shadow !== shown) vig.style.boxShadow = shown = shadow;
+    vig.style.opacity =
+        0.5 + 0.5 * kick * Math.exp(-(performance.now() - kickAt) / PULSE_MS);
 }
 
 function fire(c, instant) {
     document.body.style.background = c.bg;
     heat = c.heat;
-    vig.style.animationDuration = HEAT[heat][3];
     const typed = say(c.text, instant ? 0 : 30);
     // " ! " warnings print after the line finishes (no flash/shake)
     if (!instant && c.warns.length)
@@ -832,6 +841,9 @@ function tick() {
         if (t - HITS[h].t < 0.5) {
             shake(Math.max(heat, 1) * HIT_SHAKE * HITS[h].s, 0.6, 260);
             hitText(HITS[h].s);
+            pulse(Math.min(1, HITS[h].s));
+            vig.classList.add("hit"); // the red flash is for hits only
+            setTimeout(() => vig.classList.remove("hit"), 70);
             crackHit(HITS[h]);
         }
         h++;

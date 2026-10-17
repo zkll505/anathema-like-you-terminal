@@ -16,9 +16,7 @@ body.go { cursor: none; }
 #cur { display: inline-block; width: .6em; height: 1.1em; margin-left: 1px; vertical-align: text-bottom;
        background: #d8e6d8; animation: blink 1.06s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
-#vig { position: fixed; inset: 0; pointer-events: none; transition: box-shadow 1.5s;
-       animation: beat 5s ease-in-out infinite; }
-@keyframes beat { 50% { opacity: .5; } }
+#vig { position: fixed; inset: 0; pointer-events: none; transition: box-shadow 1.5s; } /* opacity pulses on hits and errors: pulse() and paint() in script.js */
 #vig::after { content: ""; position: absolute; inset: 0; background: #f23; opacity: 0; transition: opacity .4s; }
 #vig.hit::after { opacity: .2; transition: none; }
 #cracks { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: .6; }
