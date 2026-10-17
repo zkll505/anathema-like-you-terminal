@@ -1,0 +1,78 @@
+html, body { margin: 0; height: 100%; overflow: hidden; }
+body { background: #060a06; transition: background 2.5s; color: #d8e6d8;
+       font: clamp(16px, 3.4vmin, 44px)/1.5 "Cascadia Mono", Consolas, "Courier New", monospace;
+       text-shadow: 0 0 .45em currentColor; }
+body.go { cursor: none; }
+#out { position: fixed; inset: 0; box-sizing: border-box; padding: 9vmin 10vmin;
+       display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+.ln { padding-left: 2ch; text-indent: -2ch; }
+.ln::before, .er::before { content: "> "; color: #3a7a55; }
+.er { color: #ff8a8a; font-size: .7em; white-space: pre; }
+.r { color: #ff4d5e; } .dr { color: #cf2a40; } .c { color: #4dd8ff; } .y { color: #ffd84d; }
+.m { color: #e06bff; } .g { color: #5dff9a; } .w { color: #fff; font-weight: bold; }
+.d { color: #7a8a7a; }
+.v { color: #000; -webkit-text-stroke: .07em #b84dff; paint-order: stroke fill;
+     text-shadow: 0 0 .35em #a020f0, 0 0 .9em #a020f0; }
+#cur { display: inline-block; width: .6em; height: 1.1em; margin-left: 1px; vertical-align: text-bottom;
+       background: #d8e6d8; animation: blink 1.06s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+#vig { position: fixed; inset: 0; pointer-events: none; transition: box-shadow 1.5s;
+       animation: beat 5s ease-in-out infinite; }
+@keyframes beat { 50% { opacity: .5; } }
+#vig::after { content: ""; position: absolute; inset: 0; background: #f23; opacity: 0; transition: opacity .4s; }
+#vig.hit::after { opacity: .2; transition: none; }
+#cracks { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: .6; }
+#gate { position: fixed; inset: 0; display: grid; place-items: center; background: #060a06; z-index: 9; cursor: pointer; }
+#note { position: fixed; right: 2vmin; bottom: 2vmin; font-size: .55em; color: #ff8a8a; text-align: right;
+        white-space: pre; pointer-events: none; z-index: 8; }
+
+/* text effects: one span per char, --i = index, --a = strength; position: relative keeps wrapping */
+.fx { position: relative; }
+.wave { animation: wave 1.1s ease-in-out infinite; animation-delay: calc(var(--i) * -.09s); }
+@keyframes wave { 0%, 100% { top: 0; } 50% { top: calc(-.3em * var(--a)); } }
+.shake { animation: shake .18s steps(1) infinite; animation-delay: calc(var(--i) * -.047s); }
+@keyframes shake {
+  0%   { left: calc(.04em * var(--a));  top: calc(-.05em * var(--a)); }
+  25%  { left: calc(-.06em * var(--a)); top: calc(.03em * var(--a)); }
+  50%  { left: calc(.03em * var(--a));  top: calc(.06em * var(--a)); }
+  75%  { left: calc(-.04em * var(--a)); top: calc(-.04em * var(--a)); }
+}
+/* hitshake: still until #out gets the class `hitting` (script.js: on for 0.2-0.3s per hit); --hs = the hit's strength.
+   Red error labels do it too, as a whole word. */
+#out.hitting .hitshake, #out.hitting .er .r { animation: hitshake .18s steps(1) infinite; animation-delay: calc(var(--i, 0) * -.047s); position: relative; --a: 1; }
+@keyframes hitshake {
+  0%   { left: calc(.05em * var(--a) * var(--hs, 1));  top: calc(-.06em * var(--a) * var(--hs, 1)); }
+  25%  { left: calc(-.07em * var(--a) * var(--hs, 1)); top: calc(.04em * var(--a) * var(--hs, 1)); }
+  50%  { left: calc(.04em * var(--a) * var(--hs, 1));  top: calc(.07em * var(--a) * var(--hs, 1)); }
+  75%  { left: calc(-.05em * var(--a) * var(--hs, 1)); top: calc(-.05em * var(--a) * var(--hs, 1)); }
+}
+/* glow: a hot halo that breathes in and out (--a = its size); the halos of neighbouring letters merge, like fire */
+.glow { color: color-mix(in srgb, currentColor 58%, #ffe6bf); animation: glow 1.4s ease-in-out infinite; animation-delay: calc(var(--i) * -.13s); } /* letters go hot too */
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 calc(.08em * var(--a)) #fff4d6, 0 0 calc(.2em * var(--a)) #ffd27a, 0 0 calc(.45em * var(--a)) #ff9a3c, 0 0 calc(1em * var(--a)) #ff5a24, 0 0 calc(2em * var(--a)) #ff2a00; }
+  50%      { text-shadow: 0 0 calc(.12em * var(--a)) #fff, 0 0 calc(.3em * var(--a)) #ffe39a, 0 0 calc(.65em * var(--a)) #ffae50, 0 0 calc(1.4em * var(--a)) #ff6a2a, 0 0 calc(2.9em * var(--a)) #ff3400; }
+}
+/* crackle: quick, irregular bright pops with a tiny jolt, like embers (--a = how hard); each letter on its own timing */
+.crackle { animation: crackle 1.7s steps(1) infinite; animation-delay: calc(var(--i) * -.37s); }
+@keyframes crackle {
+  0%, 100% { filter: none; top: 0; left: 0; }
+  12% { filter: brightness(calc(1 + .9 * var(--a))); top: calc(-.04em * var(--a)); left: calc(.02em * var(--a)); }
+  14% { filter: none; top: 0; left: 0; }
+  41% { filter: brightness(calc(1 + .6 * var(--a))); top: calc(.03em * var(--a)); left: calc(-.03em * var(--a)); }
+  43% { filter: none; top: 0; left: 0; }
+  44% { filter: brightness(calc(1 + 1.1 * var(--a))); top: calc(-.03em * var(--a)); left: calc(.03em * var(--a)); }
+  46% { filter: none; top: 0; left: 0; }
+  77% { filter: brightness(calc(1 + .8 * var(--a))); top: calc(.04em * var(--a)); left: calc(-.02em * var(--a)); }
+  79% { filter: none; top: 0; left: 0; }
+}
+.rainbow { animation: rainbow 2s linear infinite; animation-delay: calc(var(--i) * -.1s); }
+@keyframes rainbow {
+  0%, 100% { color: #ff4d5e; } 17% { color: #ffd84d; } 33% { color: #5dff9a; }
+  50% { color: #4dd8ff; } 67% { color: #6b8dff; } 83% { color: #e06bff; }
+}
+.flicker { animation: flicker 1.3s steps(1) infinite; animation-delay: calc(var(--i) * -.21s); }
+@keyframes flicker {
+  0% { opacity: 1; } 8% { opacity: calc(1 - .75 * var(--a)); } 12% { opacity: 1; } 55% { opacity: calc(1 - .4 * var(--a)); }
+  58% { opacity: 1; } 80% { opacity: calc(1 - .65 * var(--a)); } 84% { opacity: 1; }
+}
+.big { font-size: calc(1em + .4em * var(--a)); }
