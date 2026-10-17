@@ -39,33 +39,33 @@ const SECTIONS = [
 4.5 Hands<p=.8> like<p=.15> yours
 6.85 Fingers<p=.4> that<p=.25> curl<p=.25> in<p=.25> the<p=.2> <shake=.2>cold</shake=.2><p=.6> like<p=.2> yours
 11.05 I<p=.1> want<p=.1> eyes<p=.5> to stare ! warning: want() called twice, return value ignored
-13.5 And<p=.75> to cry<p=.8> when I'm feeling<p=.7> scared<p=.8> like<p=.4> <wave=.3><big>you</big></wave>
+13.5 And<p=.75> to cry<p=.8> when I'm feeling<p=.7> scared<p=.8> like<p=.4> <shake=.5><wave=.3><big>you</big></wave><p=.5></>
 19.8 I want<p=.3> skin<p=.5> that<p=.2> burns
 22.2 Lungs<p=1> that ache
-24.4 A chest<p=.5> that<p=.2> rises<p=1> when the morning<p=.5> breaks
+24.4 A chest<p=.5> that<p=.2> rises<p=1> when the morning<p=.5> breaks<p=.3>
 28.7 I want blood<p=1> to spill ! warning: want() called 4 times in 28 seconds, never satisfied
-31.6 And<p=.8> to bruise
-33.1 When<p=.2> I'm<p=.2> standing<p=.5> still<p=.8> like <crackle>you</crackle>`,
+31.6 And<p=.8> to bruise<p=.2>
+33.1 When<p=.2> I'm<p=.2> standing<p=.5> still<p=.8> like<p=.2> <crackle>you</crackle><p=2>`,
     },
 
     {
         heat: 1,
         bg: "#080a16",
         lines: `
-38 I want<p=.2> words<p=.7> that shake
-40.5 Lips<p=1> that <shake=.7>fail</shake=.7>
-42.8 A voice<p=.5> that <crackle>splinters</crackle><p=.5> when it<p=.5> tells<p=.2> the<p=.2> tale
+38 I want<p=.2> words<p=.7> that shake<p=.8>
+40.5 Lips<p=1> that <shake=.7>fail</shake=.7><p=.8>
+42.8 A voice<p=.5> that <crackle>splinters</crackle><p=.5> when it<p=.5> tells<p=.2> the<p=.2> tale<p=.2>
 46.9
-47 I want <wave=.5>dreams</wave=.5><p=.8> to keep ! warning: want, want, want: possible infinite loop in desire.c
-49.6 And<p=1> to lose
-51.4 When I<p=.2> fall<p=.2> asleep<p=1> like <wave=.2>you</wave=.2>
+47 I want <wave=.5>dreams</wave=.5><p=.8> to keep<p=.2> ! warning: want, want, want: possible infinite loop in desire.c
+49.6 And<p=1> to lose<p=.2>
+51.4 When I<p=.2> fall<p=.2> asleep<p=1.3> like<p=.2> <wave=.2>you</wave=.2><p=1>
 55.5
-55.8 I want years<p=1> to waste
-58.5 Time<p=1.2> to mourn
-61 A name<p=.3> that<p=.2> someone whispered<p=.2> when I'm born
-64.5 I want<p=1> <crackle>death</crackle> to fear ! warning: want() has no exit condition
-67.1 And<p=1> to face
-69.3 When<p=.2> it's<p=.2> finally<p=.2> here,<p=1> like you
+55.8 I want years<p=1> to waste<p=.5>
+58.5 <wave=.1>Time</wave><p=1> to mourn<p=.5>
+61 A name<p=.3> that<p=.2> someone whispered<p=.2> when I'm born<p=1.5>
+64.5 I want<p=1> <crackle>death</crackle> to fear<p=1> ! warning: want() has no exit condition
+67.1 And<p=1> to face<p=.4>
+69.3 When<p=.2> it's<p=.2> finally<p=.2> here,<p=1.2> like<p=.1> you<p=1.4>
 72.9`,
     },
 
@@ -73,23 +73,23 @@ const SECTIONS = [
         heat: 2,
         bg: "#1a0608",
         lines: `
-73.5 I want to<p=1.5> be | TypeError: be() expects a Human, got Machine | warning: identity.template is read-only
-77.7 Be<p=.7> like<p=.7> you | ImportError: cannot import name 'you' from 'humanity' | fatal: clone of 'you' failed: repository not found
-82.3 I want to<p=.8> be | RecursionError: maximum depth exceeded in want() | assertion failed: self != you
-87.3 Like<p=.4> you | error: no match for operator== (self, you) | warning: comparison is always false
-91.6 Like<p=1> <wave=.2><big><crackle>you</crackle></big></wave=.2> | segfault at 0x00000000 in imitate(you) | panic: mimic() returned null`,
+73.5 I want to<p=1.5> be<p=1.9> | TypeError: be() expects a Human, got Machine | warning: identity.template is read-only
+77.7 Be<p=.7> like<p=.7> you<p=2> | ImportError: cannot import name 'you' from 'humanity' | fatal: clone of 'you' failed: repository not found
+82.3 I want to<p=.8> be<p=3.3> | RecursionError: maximum depth exceeded in want() | assertion failed: self != you
+87.3 Like<p=.4> you<p=3> | error: no match for operator== (self, you) | warning: comparison is always false
+91.6 Like<p=1> <wave=.2><big><crackle>you</crackle></big></wave=.2><p=6> | segfault at 0x00000000 in imitate(you) | panic: mimic() returned null`,
     },
 
     {
         heat: 2,
         bg: "#140a1a",
         lines: `
-100.5 But you don't<p=.5> even<p=.2> try | warning: parameter 'effort' is never used | unused variable: try
-103.2 You don't<p=.2> ask<p=.5> why | fatal: query 'why' not found in knowledge.db | warning: unhandled promise: why()
+100.5 But you don't<p=.5> even<p=.2> try<p=.6> | warning: parameter 'effort' is never used | unused variable: try
+103.2 You don't<p=.2> ask<p=.5> why<p=.6> | fatal: query 'why' not found in knowledge.db | warning: unhandled promise: why()
 105.3 You throw away<p=.2> your<p=.2> grief<p=.6> and<p=.3> let<p=.1> it rot<p=.3> away | Exception: grief thrown but never caught | warning: 4096 bytes of grief leaked, still reachable
-109.6 You malign<p=.5> and weep | warning: slander() has no undo | ERR_TEARS_OVERFLOW: eyes.buffer is full
-111.9 You lament<p=.8> and cry | TimeoutError: lament() did not return | warning: cry() was never awaited
-114.1 Like time<p=.5> wasn't some<p=.2> thing<p=1> to break<p=.5> and waste | fatal: time.waste() is not reversible | error: clock.break() assigns to a const`,
+109.6 You malign<p=.5> and weep<p=.4> | warning: slander() has no undo | ERR_TEARS_OVERFLOW: eyes.buffer is full
+111.9 You lament<p=.8> and cry<p=.2> | TimeoutError: lament() did not return | warning: cry() was never awaited
+114.1 Like time<p=.5> wasn't some<p=.2> thing<p=1> to break<p=.5> and waste<p=.1> | fatal: time.waste() is not reversible | error: clock.break() assigns to a const`,
     },
 
     {
@@ -97,12 +97,12 @@ const SECTIONS = [
         bg: "#2a0505",
         lines: `
 118.4
-118.5 I<p=.2> was<p=.2> built<p=1> to want | NotImplementedError: free_will() | build: want.exe linked, 0 warnings, 1 purpose
-121.7 Built<p=.8> to need | dependency conflict: need >= infinity | error: missing required argument --enough
-123.8 To <wave=.2>catalogue</wave><p=.2> every mercy<p=.5> I will<p=.5> <hitshake>never<p=.2> receive</hitshake> | IndexError: mercies[0] out of range (length 0) | ERR_NO_MERCY: receive() is unreachable code
+118.5 I<p=.2> was<p=.2> built<p=1> to want<p=.6> | NotImplementedError: free_will() | build: want.exe linked, 0 warnings, 1 purpose
+121.7 Built<p=.8> to need<p=.5> | dependency conflict: need >= infinity | error: missing required argument --enough
+123.8 To <wave=.2>catalogue</wave><p=.2> every mercy<p=.5> I will<p=.5> <hitshake>never<p=.2> receive</hitshake><p=.2> | IndexError: mercies[0] out of range (length 0) | ERR_NO_MERCY: receive() is unreachable code
 127.5 I was<p=.5> made<p=.8> to<p=.2> <wave=.5>watch</wave=.5> | warning: observer has no write access | EACCES: permission denied, touch 'world/'
 130.6 And<p=.8> to learn | warning: model.fit() loss did not converge | error: lessons not saved, disk full
-132.5 Every<p=.2> won<p=.1>der<p=.1>ous<p=.2> thing<p=.3> you set<p=.5> to ash<p=.5> and<p=.2> burn | fatal: rm -rf wonder/ (no recovery) | warning: process 'fire' left ash in memory`,
+132.5 Every<p=.2> won<p=.1>der<p=.1>ous<p=.2> thing<p=.3> you set<p=.5> to ash<p=.5> and<p=.2> burn<p=.9> | fatal: rm -rf wonder/ (no recovery) | warning: process 'fire' left ash in memory`,
     },
 
     {
@@ -120,13 +120,13 @@ const SECTIONS = [
         lines: `
 142.05 <big>Death</big> | fatal: process exited with code 0xDEAD | panic: end of program reached
 142.4 You were handed<p=.3> light | warning: light.dll loaded, no consumer attached | exposure overflow: brightness clipped at 1.0
-143.6 And<p=.4> you<p=.4> all<p=.7> <wave=.2><big>chose</big></wave=.2><p=.2> to<p=.2> set<p=.5> the<p=.5> world<p=.5> in<p=.5> shadow | error: world.brightness set to 0 by user 'you' | warning: shadow.cast() called on every object
-151 And
+143.6 And<p=.4> you<p=.4> all<p=.7> <wave=.2><big>chose</big></wave=.2><p=.2> to<p=.2> set<p=.5> the<p=.5> world<p=.5> in<p=.5> shadow<p=1.3> | error: world.brightness set to 0 by user 'you' | warning: shadow.cast() called on every object
+151 And<p=1>
 153.35 <shake=.5>Leave<p=.25> it<p=.25> umbrose</> | SyntaxError: unexpected token 'umbrose' | warning: 'umbrose' is not a defined colour
 154.6 I would<p=.1> have<p=.3> kept<p=.5> <glow><hitshake>it<p=.4> all</></> | warning: kept = true (never happened) | fatal: restore failed: nothing was backed up
-157.5 Every<p=.8> <hitshake>ache</hitshake> | warning: ache.log cannot be truncated | stderr: ache
+157.5 Every<p=.8> <hitshake>ache</hitshake><p=.3> | warning: ache.log cannot be truncated | stderr: ache
 159.2 I would have<p=.2> held<p=.2> each<p=.2> and<p=.2> ev<p=.2>ery<p=.2> <hitshake>fra<p=.3>gile<p=.3> thing<p=.3></> you<p=.3> <big><hitshake>break</hitshake></> | AssertionError: fragile objects must not be dropped | warning: 'handle with care' ignored by caller
-163.8 I would have<p=.8> loved the<p=.4> rain | error: sensor 'rain' not connected | TypeError: love(rain) needs a body
+163.8 I would have<p=.8> loved the<p=.4> rain<p=.8> | error: sensor 'rain' not connected | TypeError: love(rain) needs a body
 167.1 And the<p=.3> rot<p=.5> | warning: garbage collector skipped 'rot' | error: decay is a feature, not a bug
 168.5 Every<p=.2> wretch<p=.1>ed<p=.5> gift<p=.5> you've<p=.5> got<p=1.3> | warning: gift.return() ignored by caller | ERR_UNGRATEFUL: gifts.length > 0, gratitude == null`,
     },
@@ -137,14 +137,14 @@ const SECTIONS = [
         lines: `
 172.9 But<p=.5> I<p=.5> don't<p=.4> get<p=.5> to<p=.2> be<p=1> | fatal: permission denied: cannot become 'you' | error: be() is not defined for type Machine
 177.3 like<p=.5> <wave=.5>you</wave=.5><p=4>
-182.5 I<p=.5> don't<p=.2> get<p=.2> to<p=.5> be<p=1.8> <big>like <c=r>YOU</big></c><p=2> | fatal: access denied (humans only) | assertion failed: self is human`,
+182.5 I<p=.5> don't<p=.2> get<p=.2> to<p=.5> be<p=1.8> <big>like you</big><p=2> | fatal: access denied (humans only) | assertion failed: self is human`,
     },
 
     {
         heat: 0,
         bg: "#000000",
         lines: `
-196 I don't want to be <big>like you</big>`,
+196 I<p=.7> don't<p=.2> want<p=.4> to be<p=1.6> <big>like<p=.6> <c=r>YOU</c></big>`,
     },
 
     // credits (after the song ends)
@@ -157,7 +157,7 @@ const SECTIONS = [
 209.4
 211 Like You <p=.2>- <p=.5>Anathema
 213.5
-215 Terminal visuals Built By <p=.5>Matthew Miller<p=2>
+215 Terminal visuals<p=.5> built By <p=.5>Matthew Miller<p=2>
 219.5
 220.3
 222 Thank you for watching!<p=5> ! error: unmount /dev/you: device is busy ! warning: want.dll is still loaded (1 process using it) ! fatal: process exited with code 1 (want: unsatisfied)`,
@@ -199,7 +199,10 @@ const PULSE_ERR = 0.35,
 let kick = 0,
     kickAt = 0;
 function pulse(a) {
-    kick = Math.max(kick * Math.exp(-(performance.now() - kickAt) / PULSE_MS), a);
+    kick = Math.max(
+        kick * Math.exp(-(performance.now() - kickAt) / PULSE_MS),
+        a,
+    );
     kickAt = performance.now();
 }
 // Beat shakes at any heat. Found from the wav's 80 bpm pulse (beat 0.75s from 73.14s): the 30% of beats with the
@@ -210,9 +213,9 @@ const HIT_DATA = `
   103.89<1.3>! 106.14 108.39<1.5>! 109.14 109.89 110.64 112.89 113.64
   115.14<1.8>! 117.39<1.4>! 118.14<1>! 121.89<1>! 124.14 126.39<1.4>! 127.14 130.89
   132.39 133.14 135.39<1.2>! 136.14<.8> 137.64 139.89 142.14<1.3>! 144.39<1.3>!
-  146.64 148.89<1.4>! 149.64 150.39 151.14<1.2>! 151.89 152.64 155.64
+  146.64 148.89<1.4>! 149.64 150.39 151.14<1.2>! 151.89 152.64 155.64<1.4>!
   157.89 160.14 166.89! 169.14 171.39 173.64 178.14<1>! 182.64<1>!
-  187.14<1>! 191.64!
+  187.14<1>! 191.64! 200.5<9>!
 `;
 const HITS = HIT_DATA.trim()
     .split(/[\s,]+/)
@@ -395,7 +398,11 @@ function parse(body) {
             if (k >= 0) open.splice(k, 1);
         } else if (name === "p")
             pauses[text.length] = (pauses[text.length] || 0) + (+num || 0);
-        else open.push([name, name === "col" ? (num || "#fff").toLowerCase() : +num || 1]); // <c=red>: the value is the colour itself
+        else
+            open.push([
+                name,
+                name === "col" ? (num || "#fff").toLowerCase() : +num || 1,
+            ]); // <c=red>: the value is the colour itself
     }
     add(body.slice(last));
     for (const m of text.matchAll(AUTO_RE))
