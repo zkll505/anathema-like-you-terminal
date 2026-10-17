@@ -9,6 +9,8 @@
 //   (hitshake = shakes only on hits, for 0.2-0.3s; red words have it automatically unless they already shake)
 //   <shake=2> scales it; tags nest; unclosed ones run to the end of the line. Example:
 //   I c<p=.3>-c<p=.3>-can     a <wave>slow</wave> <shake=2>hand</shake>
+//   <c=COLOR> recolours only the text inside it, until </c>: a CSS colour (<c=red> <c=#f80> <c=hsl(200,90%,60%)>) or a keyword
+//   colour letter (<c=r> <c=dr> <c=c> <c=y> <c=o> <c=m> <c=g> <c=w> <c=v>); a bare <c> is white.
 // HIT_DATA: "74.64", "74.64<1.8>" (strength, default 1) or "74.64<1.8>!" (a big hit that cracks the screen), ascending.
 //   URL: ?t=90 starts at 90s, ?debug = live readout.
 // CRACKS: { at seconds, x, y (a border point, 0-1), seed } x2: each big hit (!) from `at` cracks both out at once, from opposite
@@ -21,16 +23,18 @@ const SECTIONS = [
         bg: "#060a06",
         lines: `
 -5.5 booting anathema.sys
--4.4 loading want.dll ... ok
--3.3 mounting /dev/you ... ok
--2.2 ./like_you --want --hair --hands --skin`,
+-4.4 loading <crackle>want.dll</crackle> .<p=.2>..<p=.5> ok
+-3.3 mounting /dev/you ...<p=.5> ok
+-2.2 ./like_you<p=.2> --want<p=.2> --hair --hands --skin`,
     },
 
     {
         heat: 0,
         bg: "#060a06",
         lines: `
-0         
+0
+0.5
+0.9         
 1.0 I <p=.7>want<p=.5> hair<p=.5> like<p=.1> yours
 4.5 Hands<p=.8> like<p=.15> yours
 6.85 Fingers<p=.4> that<p=.25> curl<p=.25> in<p=.25> the<p=.2> <shake=.2>cold</shake=.2><p=.6> like<p=.2> yours
@@ -38,29 +42,30 @@ const SECTIONS = [
 13.5 And<p=.75> to cry<p=.8> when I'm feeling<p=.7> scared<p=.8> like<p=.4> <wave=.3><big>you</big></wave>
 19.8 I want<p=.3> skin<p=.5> that<p=.2> burns
 22.2 Lungs<p=1> that ache
-24.4 A chest<p=.5> that rises<p=1> when the morning<p=.5> breaks
+24.4 A chest<p=.5> that<p=.2> rises<p=1> when the morning<p=.5> breaks
 28.7 I want blood<p=1> to spill ! warning: want() called 4 times in 28 seconds, never satisfied
 31.6 And<p=.8> to bruise
-33.1 When<p=.2> I'm<p=.2> standing<p=.5> still<p=.8> like you`,
+33.1 When<p=.2> I'm<p=.2> standing<p=.5> still<p=.8> like <crackle>you</crackle>`,
     },
 
     {
         heat: 1,
         bg: "#080a16",
         lines: `
-38 I want<p=.2> words<p=1> that shake
-40.5 Lips<p=1> that <shake=.3>fail</shake=.3>
-42.8 A voice<p=.5> that splinters<p=.5> when it<p=.5> tells<p=.2> the<p=.2> tale
-46
-47 I want dreams<p=.3> to keep ! warning: want, want, want: possible infinite loop in desire.c
-49 And<p=1> to lose
-51.4 When I<p=.2> fall<p=.2> asleep<p=1> like you
-55.5 I want years to waste
-58 Time<p=1.2> to mourn
-61 A name<p=.55> that someone whispered<p=.2> when I'm born
-64.5 I want death to fear ! warning: want() has no exit condition
+38 I want<p=.2> words<p=.7> that shake
+40.5 Lips<p=1> that <shake=.7>fail</shake=.7>
+42.8 A voice<p=.5> that <crackle>splinters</crackle><p=.5> when it<p=.5> tells<p=.2> the<p=.2> tale
+46.9
+47 I want <wave=.5>dreams</wave=.5><p=.8> to keep ! warning: want, want, want: possible infinite loop in desire.c
+49.6 And<p=1> to lose
+51.4 When I<p=.2> fall<p=.2> asleep<p=1> like <wave=.2>you</wave=.2>
+55.5
+55.8 I want years<p=1> to waste
+58.5 Time<p=1.2> to mourn
+61 A name<p=.3> that<p=.2> someone whispered<p=.2> when I'm born
+64.5 I want<p=1> <crackle>death</crackle> to fear ! warning: want() has no exit condition
 67.1 And<p=1> to face
-68.7 When<p=.2> it's<p=.2> finally<p=.2> here,<p=1> like you
+69.3 When<p=.2> it's<p=.2> finally<p=.2> here,<p=1> like you
 72.9`,
     },
 
@@ -68,75 +73,78 @@ const SECTIONS = [
         heat: 2,
         bg: "#1a0608",
         lines: `
-73 I want to<p=3> be | TypeError: be() expects a Human, got Machine | warning: identity.template is read-only
-77.7 Be<p=1> like<p=2> you | ImportError: cannot import name 'you' from 'humanity' | fatal: clone of 'you' failed: repository not found
-82.3 I want to<p=1> be | RecursionError: maximum depth exceeded in want() | assertion failed: self != you
-87.3 Like you | error: no match for operator== (self, you) | warning: comparison is always false
-91.6 Like you | segfault at 0x00000000 in imitate(you) | panic: mimic() returned null`,
+73.5 I want to<p=1.5> be | TypeError: be() expects a Human, got Machine | warning: identity.template is read-only
+77.7 Be<p=.7> like<p=.7> you | ImportError: cannot import name 'you' from 'humanity' | fatal: clone of 'you' failed: repository not found
+82.3 I want to<p=.8> be | RecursionError: maximum depth exceeded in want() | assertion failed: self != you
+87.3 Like<p=.4> you | error: no match for operator== (self, you) | warning: comparison is always false
+91.6 Like<p=1> <wave=.2><big><crackle>you</crackle></big></wave=.2> | segfault at 0x00000000 in imitate(you) | panic: mimic() returned null`,
     },
 
     {
         heat: 2,
         bg: "#140a1a",
         lines: `
-100 But you don't even try | warning: parameter 'effort' is never used | unused variable: try
-102.1 You don't ask why | fatal: query 'why' not found in knowledge.db | warning: unhandled promise: why()
-104.9 You throw away your grief and let it rot away | Exception: grief thrown but never caught | warning: 4096 bytes of grief leaked, still reachable
-109.6 You malign and weep | warning: slander() has no undo | ERR_TEARS_OVERFLOW: eyes.buffer is full
-111.9 You lament and cry | TimeoutError: lament() did not return | warning: cry() was never awaited
-114.1 Like time wasn't something to break and waste | fatal: time.waste() is not reversible | error: clock.break() assigns to a const`,
+100.5 But you don't<p=.5> even<p=.2> try | warning: parameter 'effort' is never used | unused variable: try
+103.2 You don't<p=.2> ask<p=.5> why | fatal: query 'why' not found in knowledge.db | warning: unhandled promise: why()
+105.3 You throw away<p=.2> your<p=.2> grief<p=.6> and<p=.3> let<p=.1> it rot<p=.3> away | Exception: grief thrown but never caught | warning: 4096 bytes of grief leaked, still reachable
+109.6 You malign<p=.5> and weep | warning: slander() has no undo | ERR_TEARS_OVERFLOW: eyes.buffer is full
+111.9 You lament<p=.8> and cry | TimeoutError: lament() did not return | warning: cry() was never awaited
+114.1 Like time<p=.5> wasn't some<p=.2> thing<p=1> to break<p=.5> and waste | fatal: time.waste() is not reversible | error: clock.break() assigns to a const`,
     },
 
     {
         heat: 3,
         bg: "#2a0505",
         lines: `
-120.4 I was built to want | NotImplementedError: free_will() | build: want.exe linked, 0 warnings, 1 purpose
-122.7 Built to need | dependency conflict: need >= infinity | error: missing required argument --enough
-123.8 To catalogue every mercy I will never receive | IndexError: mercies[0] out of range (length 0) | ERR_NO_MERCY: receive() is unreachable code
-127.5 I was made to watch | warning: observer has no write access | EACCES: permission denied, touch 'world/'
-129.4 And to learn | warning: model.fit() loss did not converge | error: lessons not saved, disk full
-131.7 Every wonderous thing you set to ash and burn | fatal: rm -rf wonder/ (no recovery) | warning: process 'fire' left ash in memory`,
+118.4
+118.5 I<p=.2> was<p=.2> built<p=1> to want | NotImplementedError: free_will() | build: want.exe linked, 0 warnings, 1 purpose
+121.7 Built<p=.8> to need | dependency conflict: need >= infinity | error: missing required argument --enough
+123.8 To <wave=.2>catalogue</wave><p=.2> every mercy<p=.5> I will<p=.5> <hitshake>never<p=.2> receive</hitshake> | IndexError: mercies[0] out of range (length 0) | ERR_NO_MERCY: receive() is unreachable code
+127.5 I was<p=.5> made<p=.8> to<p=.2> <wave=.5>watch</wave=.5> | warning: observer has no write access | EACCES: permission denied, touch 'world/'
+130.6 And<p=.8> to learn | warning: model.fit() loss did not converge | error: lessons not saved, disk full
+132.5 Every<p=.2> won<p=.1>der<p=.1>ous<p=.2> thing<p=.3> you set<p=.5> to ash<p=.5> and<p=.2> burn | fatal: rm -rf wonder/ (no recovery) | warning: process 'fire' left ash in memory`,
     },
 
     {
         heat: 2,
         bg: "#10061a",
         lines: `
-137 You were given teeth | warning: teeth.bite() is deprecated, use teeth.speak() | ERR_TOO_SHARP: jaw.limit exceeded
-139.2 Given breath | warning: breath is a finite resource | ENOSPC: no space left on lungs
-140.3 And all you ever built with it was | warning: unexpected build output: death.exe | fatal: undefined reference to 'something_else'
-142.2 Death | fatal: process exited with code 0xDEAD | panic: end of program reached`,
+137.4 You were given teeth | warning: teeth.bite() is deprecated, use teeth.speak() | ERR_TOO_SHARP: jaw.limit exceeded
+138.7 Given<p=.2> breath | warning: breath is a finite resource | ENOSPC: no space left on lungs
+139.7 And all<p=.2> you ever<p=.2> built with it<p=.2> was | warning: unexpected build output: death.exe | fatal: undefined reference to 'something_else'`,
     },
 
     {
         heat: 3,
         bg: "#300808",
         lines: `
-142.8 You were handed light | warning: light.dll loaded, no consumer attached | exposure overflow: brightness clipped at 1.0
-144 And you all chose to set the world in shadow | error: world.brightness set to 0 by user 'you' | warning: shadow.cast() called on every object
-153 And leave it umbrose | SyntaxError: unexpected token 'umbrose' | warning: 'umbrose' is not a defined colour
-154.2 I would have kept it all | warning: kept = true (never happened) | fatal: restore failed: nothing was backed up
-158 Every ache | warning: ache.log cannot be truncated | stderr: ache
-158.9 I would have held each and every fragile thing you break | AssertionError: fragile objects must not be dropped | warning: 'handle with care' ignored by caller
-164.6 I would have loved the rain | error: sensor 'rain' not connected | TypeError: love(rain) needs a body
-167.2 And the rot | warning: garbage collector skipped 'rot' | error: decay is a feature, not a bug
-169.5 Every wretched gift you've got | warning: gift.return() ignored by caller | ERR_UNGRATEFUL: gifts.length > 0, gratitude == null`,
+142.05 <big>Death</big> | fatal: process exited with code 0xDEAD | panic: end of program reached
+142.4 You were handed<p=.3> light | warning: light.dll loaded, no consumer attached | exposure overflow: brightness clipped at 1.0
+143.6 And<p=.4> you<p=.4> all<p=.7> <wave=.2><big>chose</big></wave=.2><p=.2> to<p=.2> set<p=.5> the<p=.5> world<p=.5> in<p=.5> shadow | error: world.brightness set to 0 by user 'you' | warning: shadow.cast() called on every object
+151 And
+153.35 <shake=.5>Leave<p=.25> it<p=.25> umbrose</> | SyntaxError: unexpected token 'umbrose' | warning: 'umbrose' is not a defined colour
+154.6 I would<p=.1> have<p=.3> kept<p=.5> <glow><hitshake>it<p=.4> all</></> | warning: kept = true (never happened) | fatal: restore failed: nothing was backed up
+157.5 Every<p=.8> <hitshake>ache</hitshake> | warning: ache.log cannot be truncated | stderr: ache
+159.2 I would have<p=.2> held<p=.2> each<p=.2> and<p=.2> ev<p=.2>ery<p=.2> <hitshake>fra<p=.3>gile<p=.3> thing<p=.3></> you<p=.3> <big><hitshake>break</hitshake></> | AssertionError: fragile objects must not be dropped | warning: 'handle with care' ignored by caller
+163.8 I would have<p=.8> loved the<p=.4> rain | error: sensor 'rain' not connected | TypeError: love(rain) needs a body
+167.1 And the<p=.3> rot<p=.5> | warning: garbage collector skipped 'rot' | error: decay is a feature, not a bug
+168.5 Every<p=.2> wretch<p=.1>ed<p=.5> gift<p=.5> you've<p=.5> got<p=1.3> | warning: gift.return() ignored by caller | ERR_UNGRATEFUL: gifts.length > 0, gratitude == null`,
     },
 
     {
         heat: 3,
         bg: "#400000",
         lines: `
-172.2 But I don't get to be like you | fatal: permission denied: cannot become 'you' | error: be() is not defined for type Machine
-181.4 I don't get to be like you | fatal: access denied (humans only) | assertion failed: self is human`,
+172.9 But<p=.5> I<p=.5> don't<p=.4> get<p=.5> to<p=.2> be<p=1> | fatal: permission denied: cannot become 'you' | error: be() is not defined for type Machine
+177.3 like<p=.5> <wave=.5>you</wave=.5><p=4>
+182.5 I<p=.5> don't<p=.2> get<p=.2> to<p=.5> be<p=1.8> <big>like <c=r>YOU</big></c><p=2> | fatal: access denied (humans only) | assertion failed: self is human`,
     },
 
     {
         heat: 0,
         bg: "#000000",
         lines: `
-196 I don't want to be like you`,
+196 I don't want to be <big>like you</big>`,
     },
 
     // credits (after the song ends)
@@ -189,7 +197,7 @@ const HEAT = [
 // hardest low-end hit; strength = that spike vs the median hit. A ! marks a big hit, which cracks the screen:
 // strength 1.2+, or the first hit after a 4s+ gap.
 const HIT_DATA = `
-  74.64<.8> 81.39<1>! 83.64 85.89 88.14<1.2>! 90.39 92.64<1.8>! 101.64<1>!
+  65.5 74.64<.8> 81.39<1>! 83.64 85.89 88.14<1.2>! 90.39<1.8>! 92.64<1.8>! 94.8<1>! 97.2<1>! 101.64<1>!
   103.89<1.3>! 106.14 108.39<1.5>! 109.14 109.89 110.64 112.89 113.64
   115.14<1.8>! 117.39<1.4>! 118.14<1>! 121.89<1>! 124.14 126.39<1.4>! 127.14 130.89
   132.39 133.14 135.39<1.2>! 136.14<.8> 137.64 139.89 142.14<1.3>! 144.39<1.3>!
@@ -254,14 +262,15 @@ const RED_FROM = 0;
 
 // word -> color class
 const COLORS = {
-    r: "bruise spill burns burn ash death rot wretched break",
+    r: "bruise spill burns burn ash death rot wretched break never",
     dr: "blood", // a darker red
     c: "cold cry rain tears",
-    y: "light time years waste want",
+    y: "light time years waste",
+    o: "want mercy",
     m: "dreams sleep name whispered",
-    v: "umbrose shadow", // black fill, purple outline + glow
-    g: "hair hands fingers skin lungs eyes chest",
-    w: "you yours",
+    v: "umbrose shadow anathema", // black fill, purple outline + glow
+    g: "hair hands fingers skin lungs eyes chest teeth breath",
+    w: "you yours matthew miller",
 };
 const cls = {};
 for (const k in COLORS) COLORS[k].split(" ").forEach((w) => (cls[w] = k));
@@ -320,7 +329,8 @@ async function nap(s, mine) {
         await sleep(40);
 }
 
-// Inline tags: <p=.4> pause; <wave> <shake> <hitshake> <glow> <crackle> <rainbow> <flicker> <big> until </tag> or </> (=N scales, they nest).
+// Inline tags: <p=.4> pause; <wave> <shake> <hitshake> <glow> <crackle> <rainbow> <flicker> <big> until </tag> or </> (=N scales, they nest);
+// <c=COLOR> recolours just that text.
 const FX = "shake|hitshake|glow|crackle|wave|rainbow|flicker|big";
 // Words that always get an effect: [effect, amount] (or a list of them).
 const AUTO_FX = {
@@ -363,11 +373,11 @@ function parse(body) {
         }
     };
     for (const m of body.matchAll(
-        new RegExp(`<(/?)(p|${FX}|)(?:=([\\d.]+))?>`, "gi"),
+        new RegExp(`<(/?)(p|${FX}|c|)(?:=([^>]*))?>`, "gi"),
     )) {
         // case-insensitive
         const [tag, close, name0, num] = m,
-            name = name0.toLowerCase();
+            name = name0.toLowerCase() === "c" ? "col" : name0.toLowerCase(); // <c=...> is the colour tag
         if (!name && !close) continue; // a bare "<>" is just text
         add(body.slice(last, m.index));
         last = m.index + tag.length;
@@ -376,7 +386,7 @@ function parse(body) {
             if (k >= 0) open.splice(k, 1);
         } else if (name === "p")
             pauses[text.length] = (pauses[text.length] || 0) + (+num || 0);
-        else open.push([name, +num || 1]);
+        else open.push([name, name === "col" ? (num || "#fff").toLowerCase() : +num || 1]); // <c=red>: the value is the colour itself
     }
     add(body.slice(last));
     for (const m of text.matchAll(AUTO_RE))
@@ -404,10 +414,15 @@ async function say(raw, ms) {
             let node = document.createTextNode(ch);
             for (const [name, amt] of fx[n] || []) {
                 // one span per effect, so they stack
-                const w = Object.assign(document.createElement("span"), {
-                    className: `fx ${name}`,
-                });
-                w.style.cssText = `--i:${n};--a:${amt}`;
+                // <c=...>: a keyword colour letter (r dr c y o m g w v) or any CSS colour; it recolours only this text
+                const isCol = name === "col",
+                    w = Object.assign(document.createElement("span"), {
+                        className: isCol
+                            ? "fx" + (amt in COLORS ? " " + amt : "")
+                            : `fx ${name}`,
+                    });
+                w.style.cssText = `--i:${n};--a:${isCol ? 1 : amt}`;
+                if (isCol && !(amt in COLORS)) w.style.color = amt;
                 w.append(node);
                 node = w;
             }

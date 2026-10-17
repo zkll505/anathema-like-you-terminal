@@ -8,7 +8,7 @@ body.go { cursor: none; }
 .ln { padding-left: 2ch; text-indent: -2ch; }
 .ln::before, .er::before { content: "> "; color: #3a7a55; }
 .er { color: #ff8a8a; font-size: .7em; white-space: pre; }
-.r { color: #ff4d5e; } .dr { color: #cf2a40; } .c { color: #4dd8ff; } .y { color: #ffd84d; }
+.r { color: #ff4d5e; } .dr { color: #cf2a40; } .c { color: #4dd8ff; } .y { color: #ffd84d; } .o { color: #ff9a3c; }
 .m { color: #e06bff; } .g { color: #5dff9a; } .w { color: #fff; font-weight: bold; }
 .d { color: #7a8a7a; }
 .v { color: #000; -webkit-text-stroke: .07em #b84dff; paint-order: stroke fill;
