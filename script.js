@@ -118,7 +118,7 @@ const SECTIONS = [
         heat: 3,
         bg: "#300808",
         lines: `
-142.05 <big>Death</big> | fatal: process exited with code 0xDEAD | panic: end of program reached
+142.05 <hitshake><big>Death</big></hitshake> | fatal: process exited with code 0xDEAD | panic: end of program reached
 142.4 You were handed<p=.3> light | warning: light.dll loaded, no consumer attached | exposure overflow: brightness clipped at 1.0
 143.6 And<p=.4> you<p=.4> all<p=.7> <wave=.2><big>chose</big></wave=.2><p=.2> to<p=.2> set<p=.5> the<p=.5> world<p=.5> in<p=.5> shadow<p=1.3> | error: world.brightness set to 0 by user 'you' | warning: shadow.cast() called on every object
 151 And<p=1>
@@ -137,14 +137,14 @@ const SECTIONS = [
         lines: `
 172.9 But<p=.5> I<p=.5> don't<p=.4> get<p=.5> to<p=.2> be<p=1> | fatal: permission denied: cannot become 'you' | error: be() is not defined for type Machine
 177.3 like<p=.5> <wave=.5>you</wave=.5><p=4>
-182.5 I<p=.5> don't<p=.2> get<p=.2> to<p=.5> be<p=1.8> <big>like you</big><p=2> | fatal: access denied (humans only) | assertion failed: self is human`,
+182.5 I<p=.5> don't<p=.2> get<p=.2> to<p=.5> be<p=1.8> <hitshake><big>like you</big></hitshake><p=2> | fatal: access denied (humans only) | assertion failed: self is human`,
     },
 
     {
         heat: 0,
         bg: "#000000",
         lines: `
-196 I<p=.7> don't<p=.2> want<p=.4> to be<p=1.6> <big>like<p=.6> <c=r>YOU</c></big>`,
+196 I<p=.7> don't<p=.2> want<p=.4> to be<p=1.6> <big>like<p=.6> <hitshake><c=r>YOU</c></big></hitshake>`,
     },
 
     // credits (after the song ends)
