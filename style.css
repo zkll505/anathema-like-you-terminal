@@ -1,6 +1,6 @@
 html, body { margin: 0; height: 100%; overflow: hidden; }
 body { background: #060a06; transition: background 2.5s; color: #d8e6d8;
-       font: clamp(16px, 3.4vmin, 44px)/1.5 "Cascadia Mono", Consolas, "Courier New", monospace;
+       font: clamp(16px, 3.4vmin, 44px)/1.5 "Courier New", Courier, monospace;
        text-shadow: 0 0 .45em currentColor; }
 body.go { cursor: none; }
 #out { position: fixed; inset: 0; box-sizing: border-box; padding: 9vmin 10vmin;
@@ -20,6 +20,18 @@ body.go { cursor: none; }
 #vig::after { content: ""; position: absolute; inset: 0; background: #f23; opacity: 0; transition: opacity .4s; }
 #vig.hit::after { opacity: .2; transition: none; }
 #cracks { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: .6; }
+/* CRT filter over everything (delete <div id="crt"> in index.html to turn it off). It scales with the screen: scanline pitch is
+   a whole number of px that grows with the text size (em), the roll band and corner darkening are in vmin / percent.
+   Nothing in it flashes or flickers: the only motion is one very slow, faint band. */
+#crt { position: fixed; inset: 0; pointer-events: none; z-index: 10;
+       background-image: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.36) 100%),
+                         linear-gradient(transparent 0 62%, rgba(0,0,0,.18) 62% 100%);
+       background-size: 100% 100%, 100% 4px;
+       background-size: 100% 100%, 100% round(max(3px, .11em), 1px); } /* 2nd line is dropped by browsers without round() */
+#crt::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 18vmin; animation: crtroll 14s linear infinite; /* slow faint band */
+              background: linear-gradient(transparent, rgba(255,255,255,.03), transparent); }
+@keyframes crtroll { from { transform: translateY(-18vmin); } to { transform: translateY(100vh); } }
+@media (prefers-reduced-motion: reduce) { #crt::after { animation: none; } }
 #gate { position: fixed; inset: 0; display: grid; place-items: center; background: #060a06; z-index: 9; cursor: pointer; }
 #note { position: fixed; right: 2vmin; bottom: 2vmin; font-size: .55em; color: #ff8a8a; text-align: right;
         white-space: pre; pointer-events: none; z-index: 8; }
